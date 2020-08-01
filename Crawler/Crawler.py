@@ -9,7 +9,7 @@ class Crawler:
 
         self.__url = url
         self.__soup = self.__getSoup()
-        self.__badTags = ["and", "the", "to", "at", "for", "is", "a", "an", "by", "or", "in", "of", "but", "are", "on", "from"]
+        self.__badTags = ["and", "the", "to", "at", "for", "is", "a", "an", "by", "or", "in", "of", "but", "are", "on", "from", "i", "it"]
 
 
     def __getSoup(self):
