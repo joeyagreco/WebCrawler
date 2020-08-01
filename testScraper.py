@@ -1,4 +1,4 @@
-# get and return definition of the given word
+# Test Scraper
 
 import requests
 from bs4 import BeautifulSoup
