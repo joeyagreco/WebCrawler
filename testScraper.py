@@ -1,4 +1,4 @@
-# Test Scraper
+# Test Web Scraper
 
 import requests
 from bs4 import BeautifulSoup
@@ -6,9 +6,9 @@ from csv import writer
 import lxml.html as lxml
 import selenium
 from selenium import webdriver
-import time
 
 def getTags(url):
+    """ This returns a list of strings that are "tags" """
 
 	# THIS IS SO THE CHROME DRIVER DOES NOT POP UP
 	# TO UNDO THIS, DELETE THE NEXT 3 LINES OF CODE AND REMOVE PARAMETERS FROM "driver = webdriver.Chrome(chrome_options=options)"
@@ -48,6 +48,7 @@ def getTags(url):
 def cleanTags(tagList):
     """ This takes a list of strings (tags) and returns a 'clean' version of the list """
 
+    # These are words that we will omit as tags
     badWords = ["and", "the", "to", "at", "for", "is", "a", "an", "by", "or", "in", "of", "but", "are", "on", "from"]
     # list that will hold all "cleaned" tags
     newTagList = []
@@ -57,6 +58,7 @@ def cleanTags(tagList):
         # eliminate non alphabet characters
         for character in tag:
             if(not character.isalpha()):
+                # if a non-alphaber character is here, we replace that character with an empty string
                 tag = tag.replace(character,"")
         # make sure a tag is only included if it isnt an empty string
         # and also that it isnt a "bad word"
@@ -69,9 +71,5 @@ def cleanTags(tagList):
 
 
 
-
-
-
-
-
+# Here, we put the URL of the site we would like to scrape
 getTags("https://www.rd.com/jokes/")
