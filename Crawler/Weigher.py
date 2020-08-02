@@ -46,9 +46,14 @@ class Weigher:
         # this dictionary will be what all dictionaries will be merged into
         masterDict = {}
 
-        # merge the dictionary into masterDict
         for weightedDict in self.__weightedDicts:
-            masterDict.update(weightedDict)
+            for key in weightedDict:
+                # first, check if the key exists in masterDict, if not, just add it
+                if(key not in masterDict):
+                    masterDict[key] = weightedDict[key]
+                # if the key does exist in masterDict, we put the sum of both keys in masterDict
+                else:
+                    masterDict[key] += weightedDict[key]
 
         # return masterDict sorted and in descending order
         return {k: v for k, v in sorted(masterDict.items(), key=lambda item: item[1], reverse=True)}
@@ -61,5 +66,5 @@ class Weigher:
 
 
 if __name__ == "__main__":
-    w = Weigher("https://stackoverflow.com/questions/32470543/open-file-in-another-directory-python")
+    w = Weigher("https://thatsthefinger.com/")
     print(w.getWeightedTags())
