@@ -25,7 +25,7 @@ class Weigher:
         # apply the multiplier
         for pTag in pTags:
             pTags[pTag] *= multiplier
-        print(f"Found {len(pTags)} tags with the \"{tagType}\" tag...")
+        print(f"Found {len(pTags)} tags with the \"{tagType}\" tag ...")
         return pTags
 
     def __getAllWeightedDicts(self):
@@ -59,6 +59,8 @@ class Weigher:
         return {k: v for k, v in sorted(masterDict.items(), key=lambda item: item[1], reverse=True)}
 
     def getWeightedTags(self):
+        """ This returns a master dictionary with all tags for this Weigher and their weight """
+
         return self.__weightedTags
 
 
@@ -66,5 +68,5 @@ class Weigher:
 
 
 if __name__ == "__main__":
-    w = Weigher("https://thatsthefinger.com/")
+    w = Weigher("https://www.thetiebar.com/")
     print(w.getWeightedTags())
