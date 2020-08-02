@@ -18,8 +18,7 @@ class Crawler:
 
     def __getBadTags(self):
         """ This returns a list of bad tags from the "badTags.json" file """
-        print(__file__)
-        with open(f"{self.__currentDirectory}badTags.json") as f:
+        with open(f"{self.__currentDirectory}/jsonFiles/badTags.json") as f:
             badTagDict = json.load(f)
         return badTagDict["badTags"]
 
@@ -37,7 +36,7 @@ class Crawler:
         driver.get(self.__url)
 
         print("\nConnection Opened.")
-        print(f"Scraping: {self.__url}\n")
+        print(f"\nScraping: {self.__url} ...\n")
 
         return BeautifulSoup(driver.page_source, 'lxml')
 
