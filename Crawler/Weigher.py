@@ -6,8 +6,8 @@ class Weigher:
     def __init__ (self, url):
 
         self.__crawler = Crawler(url)
-        # tags we are looking for and the weight we will give them
-        self.__weightMultipliers = {"h1":3, "h2":2, "p":1}
+        # tags we are looking for and the weight (multiplier) we will give them
+        self.__weightMultipliers = {"head":5, "title":4, "h1":3, "h2":2, "p":1, "body":1}
         self.__weightedDicts = self.__getAllWeightedDicts()
         self.__weightedTags = self.__mergeWeightedDicts()
 
@@ -25,6 +25,7 @@ class Weigher:
         # apply the multiplier
         for pTag in pTags:
             pTags[pTag] *= multiplier
+        print(f"Found {len(pTags)} tags with the \"{tagType}\" tag...")
         return pTags
 
     def __getAllWeightedDicts(self):
@@ -35,9 +36,8 @@ class Weigher:
         weightedDicts = []
 
         for key in self.__weightMultipliers:
-            print(f"Creating a weighted dict for {key} tag...")
+            #print(f"Creating a weighted dict for {key} tag...")
             weightedDicts.append(self.__getWeightsForTagType(key))
-
         return weightedDicts
 
     def __mergeWeightedDicts(self):
@@ -61,5 +61,5 @@ class Weigher:
 
 
 if __name__ == "__main__":
-    w = Weigher("https://stackoverflow.com/questions/37381999/iterate-through-a-dictionary-in-reverse-order-python")
+    w = Weigher("https://stackoverflow.com/questions/32470543/open-file-in-another-directory-python")
     print(w.getWeightedTags())
