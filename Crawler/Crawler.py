@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import json
 
 
 
@@ -9,7 +10,18 @@ class Crawler:
 
         self.__url = url
         self.__soup = self.__getSoup()
-        self.__badTags = ["and", "the", "to", "at", "for", "is", "a", "an", "by", "or", "in", "of", "but", "are", "on", "from", "i", "it"]
+        # this is used to access other files within this directory
+        # (we omit the end characters of __file__ to get rid of "Crawler.py" from the path)
+        self.__currentDirectory = __file__[:-10]
+        self.__badTags = self.__getBadTags()
+
+
+    def __getBadTags(self):
+        """ This returns a list of bad tags from the "badTags.json" file """
+        print(__file__)
+        with open(f"{self.__currentDirectory}badTags.json") as f:
+            badTagDict = json.load(f)
+        return badTagDict["badTags"]
 
 
     def __getSoup(self):
