@@ -14,6 +14,8 @@ class Crawler:
         # (we omit the end characters of __file__ to get rid of "Crawler.py" from the path)
         self.__currentDirectory = __file__[:-10]
         self.__badTags = self.__getBadTags()
+        # this is how long we allow tags to be
+        self.__maxTagLength = 15
 
 
     def __getBadTags(self):
@@ -48,8 +50,8 @@ class Crawler:
             Tag type examples: "p", "h1", "h2"... """
 
         initialTags = self.__soup.find_all(tagType)
-
         return [it.text for it in initialTags]
+
 
     def __splitTags(self, tagList):
         """ This splits the tag strings in the given tag list
@@ -77,7 +79,7 @@ class Crawler:
                     tag = tag.replace(character,"")
             # make sure a tag is only included if it isnt an empty string
             # and also that it isnt a "bad word"
-            if(len(tag) > 0 and not tag in self.__badTags):
+            if(len(tag) > 0 and len(tag) < self.__maxTagLength and not tag in self.__badTags):
                 newTagList.append(tag)
 
         return newTagList
@@ -90,3 +92,8 @@ class Crawler:
         splitTags = self.__splitTags(rawTags)
         cleanTags = self.__cleanTags(splitTags)
         return cleanTags
+
+
+if __name__ == "__main__":
+
+    c = Crawler("https://www.dictionary.com/")
