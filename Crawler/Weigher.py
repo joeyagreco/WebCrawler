@@ -68,5 +68,5 @@ class Weigher:
 
 
 if __name__ == "__main__":
-    w = Weigher("https://www.thetiebar.com/")
+    w = Weigher("https://www.dictionary.com/")
     print(w.getWeightedTags())
