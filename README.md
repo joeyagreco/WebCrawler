@@ -1,6 +1,10 @@
 # WebCrawler
 Learning how to make a web crawler
 
+**To Do**
+__________
+- update badTags.json from Search.py
+
 **Known Bugs:**
 
 Crawler.py
