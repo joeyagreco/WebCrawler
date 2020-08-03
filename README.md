@@ -3,7 +3,7 @@ Learning how to make a web crawler
 
 **To Do**
 __________
-- update badTags.json from Search.py
+- be able to update badTags.json from Search.py
 
 
 **Known Bugs:**
