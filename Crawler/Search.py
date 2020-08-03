@@ -76,9 +76,13 @@ if __name__ == "__main__":
 
         if(" " not in word):
             if(word == "r"):
+                # timer
+                startTime = time.perf_counter()
                 print("\nRefreshing Search Data...")
                 s = Search("", True)
                 print("Search Data Refreshed!\n\n")
+                stopTime = time.perf_counter()
+                print(f"\nRefresh took {stopTime-startTime} seconds.\n")
                 time.sleep(3)
             else:
                 s = Search(word, False)
