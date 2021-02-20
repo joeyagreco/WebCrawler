@@ -42,8 +42,6 @@ class Crawler:
 
         return BeautifulSoup(driver.page_source, 'lxml')
 
-        print("\nConnection Closed.")
-
 
     def __getRawTags(self, tagType):
         """ This returns a list of raw tags as strings for the given tag type
